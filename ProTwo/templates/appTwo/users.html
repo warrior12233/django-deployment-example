@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>users</title>
+    <link rel="stylesheet" href="{% static "css/my_style.css"%}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+    <h1>Fill in the form</h1>
+    <form method="post">
+      {{form.as_p}}
+      {% csrf_token %}
+      <input type="Submit" name="" value="Submit">
+    </form>
+
+    <h1>Here are your users</h1>
+    {% if users %}
+
+    <ol>
+      {% for row in users %}
+      <li>User info</li>
+      <ul>
+        <li>{{row.last_name}}</li>
+        <li>{{row.first_name}}</li>
+        <li>{{row.email}}</li>
+      </ul>
+      {% endfor %}
+    </ol>
+
+    {% else %}
+    <p>No users found</p>
+    {% endif %}
+    </div>
+  </body>
+</html>
